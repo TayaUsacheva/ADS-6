@@ -11,7 +11,7 @@ class TPQueue {
   int count1, begin1, end1;
   int goAhead(int index) {
     int result = ++index;
-    if(result > size)
+    if (result > size)
         result -= size + 1;
     return result;
   }
@@ -63,7 +63,7 @@ bool isEmpty() const {
         T out = arr[begin1];
         count1--;
         begin1 = goAhead(begin1);
-        return out;    
+        return out;
     }
   }
 
