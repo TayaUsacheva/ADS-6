@@ -6,14 +6,13 @@
 
 template<typename T, int size>
 class TPQueue {
-
  private:
   T* arr;
   int count1, begin1, end1;
-  int goAhead(int index){
+  int goAhead(int index) {
     int result = ++index;
     if(result > size)
-        result -= size +1;
+        result -= size + 1;
     return result;
   }
 
@@ -24,31 +23,31 @@ class TPQueue {
   ~TPQueue() {
     delete[] arr;
   }
-  
-  bool isEmpty() const {
+
+bool isEmpty() const {
     return count1 == 0;
   }
-  
+
   bool isFull() const {
     return count1 == size;
   }
 
-  void push(const T& arr) {
+  void push(const T& value) {
     if (isFull()) {
         throw std::string("is Full!");
     } else {
         int flag = end1;
         int i = begin1;
-        while(i < end1){
-            if(value.prior > arr[i].prior) {
+        while (i < end1) {
+            if (value.prior > arr[i].prior) {
                 flag = i;
                 break;
             }
             i++;
         }
         int j = end1;
-        while(j > flag) {
-            arr[j % size] = arr[(j - 1) % size]
+        while (j > flag) {
+            arr[j % size] = arr[(j - 1) % size];
             j--;
         }
         arr[flag % size] = value;
@@ -58,7 +57,7 @@ class TPQueue {
   }
 
   T pop() {
-    if (isEmpty()){
+    if (isEmpty()) {
         throw std::string("is Empty!");
     } else {
         T out = arr[begin1];
@@ -67,7 +66,7 @@ class TPQueue {
         return out;    
     }
   }
-  
+
   T get() const {
     assert(count1 > 0);
     return arr[begin1];
